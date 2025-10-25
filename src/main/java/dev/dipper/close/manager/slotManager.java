@@ -57,7 +57,7 @@ public class slotManager {
 
                         final int current = countdown;
                         Bukkit.getOnlinePlayers().forEach(p ->p.spigot()
-                        .sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(ChatColor.YELLOW + "Countdown: " + ChatColor.WHITE + current)));
+                        .sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText(ChatColor.AQUA + "Countdown: " + ChatColor.WHITE + current)));
 
                         plugin.getLogger().info("Countdown: " + countdown);
                         countdown --;
@@ -81,6 +81,7 @@ public class slotManager {
         closeTask.cancel();
         closeTask = null;
         gameStarted = false;
+        slotCount = 0;
 
         Bukkit.getOnlinePlayers().stream().forEach(p -> p.sendMessage(ChatColor.RED + "GAME ENDED"));
         plugin.getLogger().info("Game Ended");
@@ -98,11 +99,5 @@ public class slotManager {
     // get the current slot
     public void getCurrent(Player player) {
         player.sendMessage(ChatColor.AQUA + "Slot Count: " + ChatColor.WHITE + slotCount);
-    }
-
-    // set the slotCount
-    public void setslotCount(Player player, int slotCount) {
-        this.slotCount = slotCount;
-        player.sendMessage(ChatColor.AQUA + "Set Count: " + ChatColor.WHITE + slotCount);
     }
 }

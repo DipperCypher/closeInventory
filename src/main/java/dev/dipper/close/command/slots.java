@@ -41,15 +41,6 @@ public class slots implements CommandExecutor {
             case "current":
                 slotManager.getCurrent(player);
                 break;    
-            
-            case "set":
-                try {
-                    int slotNumber = Integer.parseInt(arg[1]);
-                    slotManager.setslotCount(player, slotNumber);
-                } catch (NumberFormatException e) {
-                    player.sendMessage(ChatColor.RED + "Invalid number format.");
-                }
-                break;
 
             default:
                 sendUsge(player);
@@ -63,6 +54,5 @@ public class slots implements CommandExecutor {
         player.sendMessage(ChatColor.RED + "- /slot start");
         player.sendMessage(ChatColor.RED + "- /slot stop");
         player.sendMessage(ChatColor.RED + "- /slot current");
-        player.sendMessage(ChatColor.RED + "- /slot set");
     }
 }
