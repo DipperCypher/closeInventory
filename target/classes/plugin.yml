@@ -1,8 +1,0 @@
-name: CloseInventory
-description: 2 player death swap plugin
-version: '${project.version}'
-main: dev.dipper.close.Inventory
-api-version: 1.19
-authors: [DipperCypher]
-commands:
-  slots: { }

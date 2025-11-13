@@ -1,17 +1,21 @@
 package dev.dipper.close.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import dev.dipper.close.manager.slotManager;
+import dev.dipper.close.manager.gameManager;
+import dev.fumaz.infuse.annotation.Inject;
 
-public class slots implements CommandExecutor {
-    private slotManager slotManager;
+public class slot implements CommandExecutor {
+    @Inject
+    private gameManager slotManager;
 
-    public slots(slotManager slotManager) {
+    @Inject
+    public slot(gameManager slotManager) {
         this.slotManager = slotManager;
     }
 
@@ -24,23 +28,30 @@ public class slots implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (arg.length <0) {
+        if (arg.length == 0) {
             sendUsge(player);
             return true;
         }
         
         switch (arg[0].toLowerCase()) {
             case "start":
-                slotManager.start(player);
+                if (arg.length < 2) {
+                    sendUsge(player);
+                    return true;
+                }
+
+                try {
+                    int newCount = Integer.parseInt(arg[1]);
+                    Bukkit.getLogger().info("count set to " + newCount);
+                    slotManager.start(player, newCount);
+                } catch (NumberFormatException e) {
+                    player.sendMessage(ChatColor.RED + "Invalid number");
+                }
                 break;
             
             case "stop":
                 slotManager.stop(player);
                 break;
-                
-            case "current":
-                slotManager.getCurrent(player);
-                break;    
 
             default:
                 sendUsge(player);
@@ -51,8 +62,7 @@ public class slots implements CommandExecutor {
     
     public void sendUsge(Player player) {
         player.sendMessage(ChatColor.RED + "Slots commad usge:");
-        player.sendMessage(ChatColor.RED + "- /slot start");
+        player.sendMessage(ChatColor.RED + "- /slot start <time>");
         player.sendMessage(ChatColor.RED + "- /slot stop");
-        player.sendMessage(ChatColor.RED + "- /slot current");
     }
 }

@@ -5,4 +5,4 @@ main: dev.dipper.close.Inventory
 api-version: 1.19
 authors: [DipperCypher]
 commands:
-  slots: { }
+  slot: { }
