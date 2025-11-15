@@ -3,7 +3,6 @@ package dev.dipper.close.manager;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -65,12 +64,13 @@ public class gameManager {
                 String countdownString = Timer(countdown);
                 Bukkit.getOnlinePlayers().stream().forEach(p -> p.spigot()
                 .sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.AQUA + "" + countdownString)));
+
                 countdown--;
             }
         }.runTaskTimer(plugin, 0L, 20L);
     }
 
-    public String Timer(int totalSeconds) {
+    private String Timer(int totalSeconds) {
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
         return String.format("%2d:%02d", minutes, seconds);
@@ -93,15 +93,14 @@ public class gameManager {
         gameStarted = false;
         slotCount = 0;
         setCount = 0;
-        countdown= 0;
+        countdown = setCount;
 
         Bukkit.getOnlinePlayers().stream().forEach(p -> p.sendMessage(ChatColor.RED + "GAME ENDED"));
         plugin.getLogger().info("Game Ended");
     }
 
     // give items
-    public void runGiveItem(Player player) {
-
+    private void runGiveItem(Player player) {
         ItemStack lockedslot = items.lockedSlot();
         player.getInventory().setItem(slotCount, lockedslot);
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);

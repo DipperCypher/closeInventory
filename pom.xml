@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dipper</groupId>
   <artifactId>CloseInventoryPlugin</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <packaging>jar</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,13 +30,8 @@
       <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.17-R0.1-SNAPSHOT</version>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-      </dependency>
-        <dependency>
-          <groupId>dev.fumaz</groupId>
-          <artifactId>infuse</artifactId>
-          <version>1.5.3</version>
       </dependency>
   </dependencies>
   <build>

@@ -8,13 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import dev.dipper.close.manager.gameManager;
-import dev.fumaz.infuse.annotation.Inject;
 
 public class slot implements CommandExecutor {
-    @Inject
     private gameManager slotManager;
 
-    @Inject
     public slot(gameManager slotManager) {
         this.slotManager = slotManager;
     }
